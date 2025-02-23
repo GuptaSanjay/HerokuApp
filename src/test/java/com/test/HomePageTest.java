@@ -2,6 +2,7 @@ package com.test;
 
 import com.BaseTest;
 import com.Pages.HomePage;
+import com.Pages.LoginSignUpPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,7 +13,8 @@ public class HomePageTest extends BaseTest {
 
     @BeforeClass
     public void driverSetup(){
-        homePage = new HomePage(driver);
+        this.homePage = new HomePage(driver);
+
     }
 
     @Test
@@ -30,8 +32,11 @@ public class HomePageTest extends BaseTest {
     }
 
     @Test
-    private void verifyHomePageOption() throws InterruptedException {
+    public void verifyHomePageOption() throws InterruptedException {
         System.out.println("Avalaibel options are *****"+homePage.getHeaderOption().size());
+        if(!homePage.verifyHomePage()){
+            homePage.clickOnButtonFromHomePage("Home");
+        }
     }
 
 }

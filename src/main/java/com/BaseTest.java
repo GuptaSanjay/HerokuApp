@@ -11,24 +11,27 @@ import java.time.Duration;
 
 
 public class BaseTest {
-    protected WebDriver driver;
+    protected static WebDriver driver;
     private String browser = "Chrome";
     private String link = "https://automationexercise.com/";
 
-    @BeforeSuite
+    @BeforeClass
     public void setupDriver(){
         driver = DriverManger.getInstance(browser).getDriver();
+        if (driver == null) {
+            throw new IllegalStateException("WebDriver is not initialized.");
+        }
         openWeb(link);
     }
 
-    @AfterSuite
+    @AfterClass
     public void closeDriver() throws InterruptedException {
         DriverManger.stopEngine();
     }
 
     public void openWeb(String link){
-        driver.get(link);
         driver.manage().window().maximize();
+        driver.get(link);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 

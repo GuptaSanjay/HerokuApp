@@ -1,0 +1,66 @@
+package com.Pages;
+
+import com.InitializeElements;
+import com.utility.SeleniumWrappers;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import java.util.Map;
+
+public class LoginSignUpPage extends InitializeElements {
+
+    public LoginSignUpPage(WebDriver driver){
+        super(driver);
+    }
+
+    @FindBy(xpath = ".//button[text()='Login']/..//input[2]")
+    private WebElement emmailForLogin;
+
+    @FindBy(xpath = ".//button[text()='Login']/..//input[3]")
+    private WebElement passworForLogin;
+
+    @FindBy(xpath = ".//button[text()='Signup']/..//input[2]")
+    private WebElement userName;
+
+    @FindBy(xpath = ".//button[text()='Signup']/..//input[3]")
+    private WebElement email;
+
+    @FindBy(xpath = "//button[text()='Signup']")
+    private WebElement signUp;
+
+
+    public LoggedInHomePage enterValidUserCred(String username, String password){
+        fillLoginPage(username,password);
+        return new LoggedInHomePage(driver);
+    }
+
+    public LoginSignUpPage enterInvalidUserCred(String username, String password){
+        fillLoginPage(username,password);
+        return this;
+    }
+
+    public LoginSignUpPage fillFormForSignUp(String username, String email) throws InterruptedException {
+        fillSignUpForm(username,email);
+        SeleniumWrappers.shortWait();
+        return this;
+    }
+
+    public CreateAccountPage clickOnSignUp(){
+        signUp.click();
+        return new CreateAccountPage(driver);
+    }
+
+
+    private void fillSignUpForm(String username,String Email) {
+        userName.sendKeys(username);
+        email.sendKeys(Email);
+    }
+
+    private void fillLoginPage(String username, String password){
+        emmailForLogin.sendKeys(username);
+        passworForLogin.sendKeys(password);
+    }
+
+
+}

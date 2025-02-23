@@ -2,20 +2,35 @@ package com.engine;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.chromium.ChromiumOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.util.Map;
 
 public class DriverManger {
 
     private static DriverManger driverMangerInstance;
     private static WebDriver driver;
 
-    private DriverManger(){
+
+    private DriverManger(String browser){
+        initEngine(browser);
+        driver.manage().deleteAllCookies();
     }
 
     private void initEngine(String browser){
         switch (browser){
             case "Chrome":{
-                driver  = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--disable-gpu");
+                options.addArguments("--disable-software-rasterizer");
+                options.setExperimentalOption("prefs", Map.of(
+                        "credentials_enable_service", false,
+                        "profile.password_manager_enabled", false
+                ));
+                driver  = new ChromeDriver(options);
                 break;
             }
             case "Firefox":
@@ -27,16 +42,16 @@ public class DriverManger {
         }
     }
 
-    public static DriverManger getInstance(String brower){
+    public static DriverManger getInstance(String browser){
         if(driverMangerInstance==null){
             synchronized (DriverManger.class){
                 if(driverMangerInstance == null){
-                    driverMangerInstance = new DriverManger();
+                    driverMangerInstance = new DriverManger(browser);
                 }
             }
         }
         if(driver==null){
-            driverMangerInstance.initEngine(brower);
+            driverMangerInstance.initEngine(browser);
         }
         return driverMangerInstance;
     }
@@ -47,7 +62,9 @@ public class DriverManger {
 
     public static void stopEngine(){
         if(driver!=null){
+            System.out.println("Quiting driver");
             driver.quit();
+            driver = null;
         }
     }
 }

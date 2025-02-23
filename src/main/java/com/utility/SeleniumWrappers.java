@@ -1,10 +1,9 @@
 package com.utility;
 
 import com.BaseTest;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -13,13 +12,13 @@ import java.util.List;
 
 public class SeleniumWrappers extends BaseTest {
 
-    protected WebDriver driver;
-    protected int shortWait = 10;
-    protected int mediumWait = 20;
-    protected WebDriverWait webDriverWait;
+    protected static WebDriver driver;
+    protected static int shortWait = 5;
+    protected static int mediumWait = 10;
+    protected static WebDriverWait webDriverWait;
 
     public SeleniumWrappers(WebDriver driver){
-        this.driver=driver;
+        SeleniumWrappers.driver =driver;
     }
 
     private void waitForPageTOLoad(){
@@ -27,8 +26,12 @@ public class SeleniumWrappers extends BaseTest {
         js.executeScript("return document.readyState").toString().equals("complete");
     }
 
-    private void shortWait() throws IllegalArgumentException, InterruptedException {
-        Thread.sleep(shortWait);
+     public static void shortWait() throws IllegalArgumentException, InterruptedException {
+        Thread.sleep(Duration.ofSeconds(shortWait));
+    }
+
+    public static void mediumWait() throws InterruptedException {
+        Thread.sleep(Duration.ofSeconds(mediumWait));
     }
 
     protected void setShortWait() throws InterruptedException {
@@ -65,7 +68,7 @@ public class SeleniumWrappers extends BaseTest {
         return list;
     }
 
-    public void waitForElementVisibility(WebElement element){
+    public static void waitForElementVisibility(WebElement element){
         webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(shortWait)); // Updated to use Duration
         webDriverWait.until(ExpectedConditions.visibilityOf(element)); // Wait until element is visible
         //element.sendKeys(string);
@@ -77,9 +80,47 @@ public class SeleniumWrappers extends BaseTest {
         element.click();
     }
 
-    public void waitShortToClickable(WebElement element){
+    public static void waitShortToClickable(WebElement element){
         webDriverWait = new WebDriverWait(driver,Duration.ofSeconds(shortWait));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public void clickOnDynamicButton(String homePageButton){
+        WebElement element = driver.findElement(By.xpath(".//a[text()=' "+homePageButton+"']"));
+        element.click();
+    }
+
+    public static void clickWhenElementClickable(WebElement element){
+        waitShortToClickable(element);
+    }
+
+    public void enterValue(WebElement element, String value){
+        element.sendKeys(value);
+    }
+
+    public static void selectFromDropdownByValue(WebElement element,String value){
+        Select select = new Select(element);
+        select.selectByValue(value);
+    }
+
+    public static void scrollToElement(WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();",element);
+    }
+
+    public void acknowledgeAlert(){
+        try{
+            Alert alert = driver.switchTo().alert();
+            alert.dismiss();
+        }
+        catch (Exception e){
+            System.out.println("exception"+e);
+        }
+
+    }
+
+    public void clickESC(){
+
     }
 
 }
