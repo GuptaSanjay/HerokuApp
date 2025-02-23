@@ -3,7 +3,9 @@
 <suite name="SeleniumTestsuite">
     <test name="HomePage">
         <classes>
-            <class name="com.test.HomePageTest"></class>
+<!--            <class name="com.test.LoginSignUpTest"></class>-->
+<!--            <class name="com.test.HomePageTest"></class>-->
+            <class name="com.test.UserRegistrationTest"></class>
         </classes>
     </test>
 </suite>
