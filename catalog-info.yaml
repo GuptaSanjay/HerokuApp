@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: HerokuApp
+  annotations:
+    github.com/project-slug: GuptaSanjay/HerokuApp
+spec:
+  type: other
+  lifecycle: unknown
+  owner: guests
