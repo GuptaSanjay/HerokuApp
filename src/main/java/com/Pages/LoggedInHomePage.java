@@ -18,6 +18,9 @@ public class LoggedInHomePage extends InitializeElements {
     @FindBy(xpath = "//div[@class=\"shop-menu pull-right\"]//ul//li[5]/a")
     private WebElement deleteAccount;
 
+    @FindBy(xpath = "//a[@href=\"/logout\"]")
+    private WebElement logOut;
+
 
     public String  getLoggedInUserName(){
         return loggedInUser.getText();
@@ -27,6 +30,11 @@ public class LoggedInHomePage extends InitializeElements {
         deleteAccount.click();
         SeleniumWrappers.shortWait();
         return new DeleteAccountPage(driver);
+    }
+
+    public void logOut() throws InterruptedException {
+      logOut.click();
+      SeleniumWrappers.shortWait();
     }
 
 
