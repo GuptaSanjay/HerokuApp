@@ -88,11 +88,11 @@ public class CreateAccountPage extends InitializeElements {
         mobile_number.sendKeys(details.get("mobile"));
     }
 
-    public AccountCreatedPage clickOnCreateAccount() throws InterruptedException {
+    public void clickOnCreateAccount() throws InterruptedException {
         SeleniumWrappers.shortWait();
         SeleniumWrappers.scrollToElement(createButton);
         createButton.click();
-        return new AccountCreatedPage(driver);
+      new AccountCreatedPage(driver);
     }
 
 }

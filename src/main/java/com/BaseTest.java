@@ -2,29 +2,28 @@ package com;
 
 import com.engine.DriverManger;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
 
 public class BaseTest {
     protected static WebDriver driver;
-    private String browser = "Chrome";
     private String link = "https://automationexercise.com/";
 
-    @BeforeClass
-    public void setupDriver(){
-        driver = DriverManger.getInstance(browser).getDriver();
+    @BeforeClass(alwaysRun = true)
+    @Parameters("browser")
+    public void setupDriver(String browser){
+      System.out.println("Starting the Driver");
+      driver = DriverManger.getInstance(browser).getDriver();
+      System.out.println(Thread.currentThread().getName()+"Thread name"+"with Thread ID "+Thread.currentThread().threadId());
         if (driver == null) {
             throw new IllegalStateException("WebDriver is not initialized.");
         }
         openWeb(link);
     }
 
-    @AfterClass
+    @BeforeClass  (alwaysRun = true)
     public void closeDriver() throws InterruptedException {
         DriverManger.stopEngine();
     }

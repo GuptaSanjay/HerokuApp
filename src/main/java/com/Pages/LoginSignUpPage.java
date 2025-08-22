@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.Map;
-
 public class LoginSignUpPage extends InitializeElements {
 
     public LoginSignUpPage(WebDriver driver){
@@ -29,10 +27,14 @@ public class LoginSignUpPage extends InitializeElements {
     @FindBy(xpath = "//button[text()='Signup']")
     private WebElement signUp;
 
+  @FindBy(xpath = "//button[text()='Login']")
+  private WebElement login;
 
-    public LoggedInHomePage enterValidUserCred(String username, String password){
+
+    public void loginWithValidUserCred(String username, String password){
         fillLoginPage(username,password);
-        return new LoggedInHomePage(driver);
+        login.click();
+      new LoggedInHomePage(driver);
     }
 
     public LoginSignUpPage enterInvalidUserCred(String username, String password){

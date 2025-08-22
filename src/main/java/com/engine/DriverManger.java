@@ -11,13 +11,11 @@ import java.util.Map;
 
 public class DriverManger {
 
-    private static DriverManger driverMangerInstance;
-    private static WebDriver driver;
+    private static volatile DriverManger driverMangerInstance;
+    private static final ThreadLocal<WebDriver> threadLocal = new ThreadLocal<>();
 
 
-    private DriverManger(String browser){
-        initEngine(browser);
-        driver.manage().deleteAllCookies();
+    private DriverManger(){
     }
 
     private void initEngine(String browser){
@@ -30,11 +28,11 @@ public class DriverManger {
                         "credentials_enable_service", false,
                         "profile.password_manager_enabled", false
                 ));
-                driver  = new ChromeDriver(options);
+                threadLocal.set(new ChromeDriver(options))  ;
                 break;
             }
             case "Firefox":
-                driver = new FirefoxDriver();
+                threadLocal.set(new FirefoxDriver());
                 break;
             default:{
                 throw new IllegalArgumentException("Browser is not supported");
@@ -46,25 +44,25 @@ public class DriverManger {
         if(driverMangerInstance==null){
             synchronized (DriverManger.class){
                 if(driverMangerInstance == null){
-                    driverMangerInstance = new DriverManger(browser);
+                    driverMangerInstance = new DriverManger();
                 }
             }
         }
-        if(driver==null){
+        if(threadLocal.get()==null){
             driverMangerInstance.initEngine(browser);
         }
         return driverMangerInstance;
     }
 
     public WebDriver getDriver(){
-        return driver;
+        return threadLocal.get();
     }
 
     public static void stopEngine(){
-        if(driver!=null){
+        if(threadLocal.get()!=null){
             System.out.println("Quiting driver");
-            driver.quit();
-            driver = null;
+            threadLocal.get().quit();
+            threadLocal.remove();
         }
     }
 }
