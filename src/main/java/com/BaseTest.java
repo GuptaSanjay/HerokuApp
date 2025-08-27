@@ -11,10 +11,10 @@ public class BaseTest {
     protected static WebDriver driver;
     private String link = "https://automationexercise.com/";
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     @Parameters("browser")
-    public void setupDriver(String browser){
-      System.out.println("Starting the Driver");
+    public void setupDriver(@Optional("Chrome") String browser){
+      System.out.println("**************  Starting the Driver  ****************");
       driver = DriverManger.getInstance(browser).getDriver();
       System.out.println(Thread.currentThread().getName()+"Thread name"+"with Thread ID "+Thread.currentThread().threadId());
         if (driver == null) {
@@ -23,9 +23,10 @@ public class BaseTest {
         openWeb(link);
     }
 
-    @BeforeClass  (alwaysRun = true)
+    @AfterMethod (alwaysRun = true)
     public void closeDriver() throws InterruptedException {
-        DriverManger.stopEngine();
+      System.out.println("*****************  Quiting the driver  ****************");
+      DriverManger.stopEngine();
     }
 
     public void openWeb(String link){

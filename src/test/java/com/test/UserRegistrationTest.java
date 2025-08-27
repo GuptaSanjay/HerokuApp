@@ -2,6 +2,8 @@ package com.test;
 
 import com.BaseTest;
 import com.Pages.*;
+import com.aventstack.extentreports.ExtentReports;
+import com.utility.Report.ExtentReportManager;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -61,7 +63,7 @@ public class UserRegistrationTest extends BaseTest {
         String user = loggedInHomePage.getLoggedInUserName();
         Assert.assertEquals(user, username);
         loggedInHomePage.logOut();
-        
+
 //        loggedInHomePage.clickOnDeleteAccount();
 //        String deleteText = deleteAccountPage.getDeleteAccountConfirmation();
 //        Assert.assertEquals(deleteText, "ACCOUNT DELETED!");
@@ -70,7 +72,7 @@ public class UserRegistrationTest extends BaseTest {
     }
 
 
-    @Test(description = "Delete registered user", dataProvider = "userData", alwaysRun = true, dependsOnMethods = "registerUser" )
+    @Test(description = "Delete registered user", dataProvider = "userData", alwaysRun = true, priority =1)
     public void deleteUser(String username, String email) throws InterruptedException {
       homePage.getPageTitle();
       homePage.clickOnButtonFromHomePage("Signup / Login");
@@ -101,8 +103,8 @@ public class UserRegistrationTest extends BaseTest {
   @DataProvider(name = "userData")
   public Object[][] provideUserData(){
       return new Object[][]{
-        {"sanjay","sanjay.cloudtech@gmail.com"},
-//        {"Raj","san568sliewn223test1@mailinator.com"}
+        {"sanjay","sanjay.cloudtech@gmail.com"}
+        //{"Raj","san568sliewn223test1@mailinator.com"}
 //        {"Gupta","san568jlsflsk3238test2@mailinator.com"}
       };
   }

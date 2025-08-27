@@ -1,4 +1,4 @@
-package com.model.registrationModel;
+package com.data.model;
 
 import lombok.*;
 

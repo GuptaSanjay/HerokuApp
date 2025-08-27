@@ -60,7 +60,6 @@ public class DriverManger {
 
     public static void stopEngine(){
         if(threadLocal.get()!=null){
-            System.out.println("Quiting driver");
             threadLocal.get().quit();
             threadLocal.remove();
         }
