@@ -5,13 +5,14 @@ import com.Pages.HomePage;
 import com.Pages.LoginSignUpPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class HomePageTest extends BaseTest {
 
     private HomePage homePage;
 
-    @BeforeClass
+    @BeforeMethod
     public void driverSetup(){
         this.homePage = new HomePage(driver);
 

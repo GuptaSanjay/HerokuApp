@@ -19,8 +19,8 @@ public class DriverManger {
     }
 
     private void initEngine(String browser){
-        switch (browser){
-            case "Chrome":{
+        switch (browser.toLowerCase()){
+            case "chrome":{
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--disable-gpu");
                 options.addArguments("--disable-software-rasterizer");
@@ -31,7 +31,7 @@ public class DriverManger {
                 threadLocal.set(new ChromeDriver(options))  ;
                 break;
             }
-            case "Firefox":
+            case "firefox":
                 threadLocal.set(new FirefoxDriver());
                 break;
             default:{
@@ -60,7 +60,6 @@ public class DriverManger {
 
     public static void stopEngine(){
         if(threadLocal.get()!=null){
-            System.out.println("Quiting driver");
             threadLocal.get().quit();
             threadLocal.remove();
         }

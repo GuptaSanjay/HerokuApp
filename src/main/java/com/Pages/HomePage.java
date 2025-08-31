@@ -12,12 +12,12 @@ import java.util.List;
 
 public class HomePage extends InitializeElements {
 
-    protected SeleniumWrappers seleniumWrappers;
+    protected SeleniumWrappers wrappers;
     protected WebDriver driver;
 
     public HomePage(WebDriver driver) {
         super(driver);
-        this.seleniumWrappers = new SeleniumWrappers(driver);
+        this.wrappers = new SeleniumWrappers(driver);
     }
 
     @FindBy(xpath = ".//div[@class=\"shop-menu pull-right\"]//ul//li")
@@ -34,23 +34,23 @@ public class HomePage extends InitializeElements {
 
 
     public String verifyPageHeading(){
-        return seleniumWrappers.getAttributeValue(headerText,"alt");
+        return wrappers.getAttributeValue(headerText,"alt");
     }
 
     public String getPageTitle(){
-       return seleniumWrappers.getTitle();
+       return wrappers.getTitle();
     }
 
     public List<String> getHeaderOption(){
         List<String> headerList = new ArrayList<>();
-        headerList = seleniumWrappers.getListValue(headerOption);
+        headerList = wrappers.getListValue(headerOption);
         return headerList;
     }
 
     public boolean verifyHomePage(){
        boolean res = false;
         try {
-            String ifColored = seleniumWrappers.getAttributeValue(homePageButton, "style");
+            String ifColored = wrappers.getAttributeValue(homePageButton, "style");
             if (ifColored.isEmpty()) {
                 res = false;
             }
@@ -64,8 +64,7 @@ public class HomePage extends InitializeElements {
     }
 
     public void clickOnButtonFromHomePage(String homePageButtonName) throws InterruptedException {
-        seleniumWrappers.shortWait();
-        seleniumWrappers.clickOnDynamicButton(homePageButtonName);
+        wrappers.clickOnDynamicButton(homePageButtonName);
 
     }
 

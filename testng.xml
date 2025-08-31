@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="SeleniumTestsuite" parallel="tests" thread-count="2" verbose="3">
+<suite name="SeleniumTestsuite" parallel="classes" thread-count="2" verbose="3">
     <test name="HomePage">
       <parameter name="browser" value="Chrome"/>
         <classes>
-            <class name="com.test.UserRegistrationTest"></class>
+          <class name="com.test.UserRegistrationTest"></class>
+          <class name="com.test.LoginTest.LoginSignUpTest"></class>
         </classes>
     </test>
 
 <!--  <test name="HomePage1">-->
-<!--    <parameter name="browser" value="Firefox"/>-->
+<!--    <parameter name="browser" value="Chrome"/>-->
 <!--    <classes>-->
-<!--      <class name="com.test.UserRegistrationTest"></class>-->
+<!--      <class name="com.test.LoginTest.LoginSignUpTest"></class>-->
 <!--    </classes>-->
 <!--  </test>-->
 </suite>

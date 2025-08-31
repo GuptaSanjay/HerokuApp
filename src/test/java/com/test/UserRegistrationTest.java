@@ -46,7 +46,7 @@ public class UserRegistrationTest extends BaseTest {
         deleteAccountPage = new DeleteAccountPage(driver);
     }
 
-    @Test(description = "Verify user can sign up and can  delete account", dataProvider ="userData", alwaysRun = true)
+    @Test(description = "Verify user can sign up and can  delete account", dataProvider ="userData", groups = {"createLoginDelete"})
     public void registerUser(String username, String email) throws InterruptedException {
         homePage.getPageTitle();
         homePage.verifyHomePage();
@@ -61,7 +61,7 @@ public class UserRegistrationTest extends BaseTest {
         String user = loggedInHomePage.getLoggedInUserName();
         Assert.assertEquals(user, username);
         loggedInHomePage.logOut();
-        
+
 //        loggedInHomePage.clickOnDeleteAccount();
 //        String deleteText = deleteAccountPage.getDeleteAccountConfirmation();
 //        Assert.assertEquals(deleteText, "ACCOUNT DELETED!");
@@ -69,12 +69,11 @@ public class UserRegistrationTest extends BaseTest {
 //        homePage.verifyHomePage();
     }
 
-
-    @Test(description = "Delete registered user", dataProvider = "userData", alwaysRun = true, dependsOnMethods = "registerUser" )
+    @Test(description = "Delete registered user", dataProvider = "userData", alwaysRun = true, priority =1,groups = "createLoginDelete")
     public void deleteUser(String username, String email) throws InterruptedException {
       homePage.getPageTitle();
       homePage.clickOnButtonFromHomePage("Signup / Login");
-      loginSignUpPage.loginWithValidUserCred(email,addressInfo.get("password"));
+      loginSignUpPage.login(email,addressInfo.get("password"));
       String user = loggedInHomePage.getLoggedInUserName();
       Assert.assertEquals(user, username);
       loggedInHomePage.clickOnDeleteAccount();
@@ -101,8 +100,7 @@ public class UserRegistrationTest extends BaseTest {
   @DataProvider(name = "userData")
   public Object[][] provideUserData(){
       return new Object[][]{
-        {"sanjay","sanjay.cloudtech@gmail.com"},
-//        {"Raj","san568sliewn223test1@mailinator.com"}
+        {"Raj","san568sliewn223test1@mailinator.com"}
 //        {"Gupta","san568jlsflsk3238test2@mailinator.com"}
       };
   }
