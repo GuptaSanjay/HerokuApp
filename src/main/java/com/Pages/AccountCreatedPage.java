@@ -8,8 +8,11 @@ import org.openqa.selenium.support.FindBy;
 
 public class AccountCreatedPage extends InitializeElements {
 
+  private SeleniumWrappers wrappers;
+
     public AccountCreatedPage(WebDriver driver){
         super(driver);
+        this.wrappers = new SeleniumWrappers(driver);
     }
 
     @FindBy(xpath = "//h2[@data-qa=\"account-created\"]//b")
@@ -19,15 +22,15 @@ public class AccountCreatedPage extends InitializeElements {
     private WebElement continueButton;
 
     public String getAccountCreatedText() throws InterruptedException {
-        SeleniumWrappers.mediumWait();
+        wrappers.waitForElementVisibility(accountCreatedText);
         //seleniumWrappers.acknowledgeAlert();
         return accountCreatedText.getText();
     }
 
-    public LoggedInHomePage  continueToVerifyLoggedInUserPage() throws InterruptedException {
-        SeleniumWrappers.scrollToElement(continueButton);
+    public void continueToVerifyLoggedInUserPage() throws InterruptedException {
+        wrappers.scrollToElement(continueButton);
         continueButton.click();
-        SeleniumWrappers.shortWait();
-        return new LoggedInHomePage(driver);
+        wrappers.shortWait();
+      new LoggedInHomePage(driver);
     }
 }

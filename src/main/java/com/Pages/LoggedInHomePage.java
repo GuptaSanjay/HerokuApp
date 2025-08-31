@@ -8,8 +8,11 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoggedInHomePage extends InitializeElements {
 
+    private SeleniumWrappers wrappers;
+
     public LoggedInHomePage(WebDriver driver){
         super(driver);
+        this.wrappers = new SeleniumWrappers(driver);
     }
 
     @FindBy(xpath = "//a[text()=\" Logged in as \"]//b")
@@ -23,18 +26,18 @@ public class LoggedInHomePage extends InitializeElements {
 
 
     public String  getLoggedInUserName(){
+        wrappers.waitForElementVisibility(loggedInUser);
         return loggedInUser.getText();
     }
 
     public DeleteAccountPage clickOnDeleteAccount() throws InterruptedException {
         deleteAccount.click();
-        SeleniumWrappers.shortWait();
         return new DeleteAccountPage(driver);
     }
 
     public void logOut() throws InterruptedException {
       logOut.click();
-      SeleniumWrappers.shortWait();
+      wrappers.shortWait();
     }
 
 

@@ -10,11 +10,11 @@ import java.util.Map;
 
 public class CreateAccountPage extends InitializeElements {
 
-    private SeleniumWrappers seleniumWrappers;
+    private SeleniumWrappers wrappers;
 
     public CreateAccountPage(WebDriver driver){
         super(driver);
-        this.seleniumWrappers = new SeleniumWrappers(driver);
+        this.wrappers = new SeleniumWrappers(driver);
     }
 
     @FindBy(xpath = ".//b[.=\"Enter Account Information\"]")
@@ -75,13 +75,13 @@ public class CreateAccountPage extends InitializeElements {
     }
 
     private void fillUserDetails(Map<String, String> details) throws InterruptedException {
-        SeleniumWrappers.waitForElementVisibility(accountInformationPage);
+        wrappers.waitForElementVisibility(accountInformationPage);
         first_name.sendKeys(details.get("firstName"));
         last_name.sendKeys(details.get("lastName"));
         paswd.sendKeys(details.get("password"));
         address1.sendKeys(details.get("Address"));
         //seleniumWrappers.shortWait();
-        SeleniumWrappers.selectFromDropdownByValue(country,details.get("country"));
+        wrappers.selectFromDropdownByValue(country,details.get("country"));
         state.sendKeys(details.get("state"));
         city.sendKeys(details.get("city"));
         zipcode.sendKeys(details.get("zipcode"));
@@ -89,8 +89,7 @@ public class CreateAccountPage extends InitializeElements {
     }
 
     public void clickOnCreateAccount() throws InterruptedException {
-        SeleniumWrappers.shortWait();
-        SeleniumWrappers.scrollToElement(createButton);
+        wrappers.scrollToElement(createButton);
         createButton.click();
       new AccountCreatedPage(driver);
     }

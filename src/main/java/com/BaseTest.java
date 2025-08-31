@@ -8,7 +8,7 @@ import java.time.Duration;
 
 
 public class BaseTest {
-    protected static WebDriver driver;
+    protected WebDriver driver;
     private String link = "https://automationexercise.com/";
 
     @BeforeMethod(alwaysRun = true)
@@ -32,7 +32,6 @@ public class BaseTest {
     public void openWeb(String link){
         driver.manage().window().maximize();
         driver.get(link);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
 }

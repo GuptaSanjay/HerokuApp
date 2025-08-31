@@ -8,8 +8,11 @@ import org.openqa.selenium.support.FindBy;
 
 public class DeleteAccountPage extends InitializeElements {
 
+    private SeleniumWrappers wrappers;
+
     public DeleteAccountPage(WebDriver driver){
         super(driver);
+        this.wrappers = new SeleniumWrappers(driver);
     }
 
     @FindBy(xpath = "//h2[@data-qa=\"account-deleted\"]//b")
@@ -19,12 +22,12 @@ public class DeleteAccountPage extends InitializeElements {
     private WebElement continueButton;
 
     public String getDeleteAccountConfirmation() throws InterruptedException {
-      SeleniumWrappers.shortWait();
+      wrappers.waitForElementVisibility(deleteAccountText);
       return deleteAccountText.getText();
     }
 
-    public HomePage continueButtonClick() {
+    public void continueButtonClick() {
         continueButton.click();
-        return new HomePage(driver);
+      new HomePage(driver);
     }
 }

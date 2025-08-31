@@ -8,8 +8,11 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginSignUpPage extends InitializeElements {
 
+  private SeleniumWrappers wrappers;
+
     public LoginSignUpPage(WebDriver driver){
         super(driver);
+        this.wrappers = new SeleniumWrappers(driver);
     }
 
     @FindBy(xpath = ".//button[text()='Login']/..//input[2]")
@@ -30,21 +33,18 @@ public class LoginSignUpPage extends InitializeElements {
   @FindBy(xpath = "//button[text()='Login']")
   private WebElement login;
 
+  @FindBy(xpath = "//div[@class='login-form']/form/p")
+  private WebElement invalidCredsError;
 
-    public void loginWithValidUserCred(String username, String password){
+
+    public void login(String username, String password) throws InterruptedException {
         fillLoginPage(username,password);
         login.click();
       new LoggedInHomePage(driver);
     }
 
-    public LoginSignUpPage enterInvalidUserCred(String username, String password){
-        fillLoginPage(username,password);
-        return this;
-    }
-
     public LoginSignUpPage fillFormForSignUp(String username, String email) throws InterruptedException {
         fillSignUpForm(username,email);
-        SeleniumWrappers.shortWait();
         return this;
     }
 
@@ -55,13 +55,19 @@ public class LoginSignUpPage extends InitializeElements {
 
 
     private void fillSignUpForm(String username,String Email) {
+        wrappers.waitForElementVisibility(userName);
         userName.sendKeys(username);
         email.sendKeys(Email);
     }
 
-    private void fillLoginPage(String username, String password){
+    private void fillLoginPage(String username, String password) throws InterruptedException {
+        wrappers.waitForElementVisibility(userName);
         emmailForLogin.sendKeys(username);
         passworForLogin.sendKeys(password);
+    }
+
+    public void verifyErrorMessage(){
+      wrappers.waitForElementVisibility(invalidCredsError);
     }
 
 
