@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="SeleniumTestsuite" parallel="classes" thread-count="2" verbose="3">
-    <test name="HomePage">
+
+  <listeners>
+    <listener class-name="com.test.Listener"/>
+  </listeners>
+
+  <test name="HomePage">
       <parameter name="browser" value="Chrome"/>
         <classes>
-          <class name="com.test.UserRegistrationTest"></class>
-          <class name="com.test.LoginTest.LoginSignUpTest"></class>
+          <class name="com.test.UserRegistrationTest"/>
+          <class name="com.test.LoginTest.LoginSignUpTest"/>
         </classes>
     </test>
 

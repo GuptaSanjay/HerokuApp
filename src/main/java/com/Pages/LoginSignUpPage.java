@@ -48,9 +48,9 @@ public class LoginSignUpPage extends InitializeElements {
         return this;
     }
 
-    public CreateAccountPage clickOnSignUp(){
+    public void clickOnSignUp(){
         signUp.click();
-        return new CreateAccountPage(driver);
+      new CreateAccountPage(driver);
     }
 
 
