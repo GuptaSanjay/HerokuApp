@@ -51,7 +51,7 @@
             <suiteXmlFile>testng.xml</suiteXmlFile>
           </suiteXmlFiles>
           <systemPropertyVariables>
-            <browser>Chrome</browser> <!-- Optional: Set default browser -->
+<!--            <browser>Chrome</browser> &lt;!&ndash; Optional: Set default browser &ndash;&gt;-->
           </systemPropertyVariables>
         </configuration>
       </plugin>

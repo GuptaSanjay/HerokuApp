@@ -1,6 +1,5 @@
 package com.test;
 
-import com.BaseTest;
 import com.Pages.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -19,6 +18,7 @@ public class UserRegistrationTest extends BaseTest {
     private AccountCreatedPage accountCreatedPage;
     private LoggedInHomePage loggedInHomePage;
     private DeleteAccountPage deleteAccountPage;
+    private String EXISTING_USER_SIGNUP_ERROR = "Email Address already exist!";
 
     Map<String, String> addressInfo = Map.ofEntries(
             entry("Address", "D-Block, 1100, J J Colony"),
@@ -37,7 +37,7 @@ public class UserRegistrationTest extends BaseTest {
 
 
     @BeforeMethod
-    public void driverSetUp() {
+    public void initializeObject() {
         loginSignUpPage = new LoginSignUpPage(driver);
         homePage = new HomePage(driver);
         createAccountPage = new CreateAccountPage(driver);
@@ -46,11 +46,11 @@ public class UserRegistrationTest extends BaseTest {
         deleteAccountPage = new DeleteAccountPage(driver);
     }
 
-    @Test(description = "Verify user can sign up and can  delete account", dataProvider ="userData", groups = {"createLoginDelete"})
+    @Test(description = "Verify user can sign up and can  delete account", dataProvider ="userData", groups = {"RegisterUser"})
     public void registerUser(String username, String email) throws InterruptedException {
         homePage.getPageTitle();
         homePage.verifyHomePage();
-        homePage.clickOnButtonFromHomePage("Signup / Login");
+        homePage.clickOnMenuButton("Signup / Login");
         loginSignUpPage.fillFormForSignUp(username,email);
         loginSignUpPage.clickOnSignUp();
         createAccountPage.enterUserDetails(addressInfo);
@@ -69,10 +69,10 @@ public class UserRegistrationTest extends BaseTest {
 //        homePage.verifyHomePage();
     }
 
-    @Test(description = "Delete registered user", dataProvider = "userData", alwaysRun = true, priority =1,groups = "createLoginDelete")
+    @Test(description = "Delete registered user", dataProvider = "userData", alwaysRun = true, priority =2,groups = {"RegisterUser"},dependsOnMethods = {"registerUser"})
     public void deleteUser(String username, String email) throws InterruptedException {
       homePage.getPageTitle();
-      homePage.clickOnButtonFromHomePage("Signup / Login");
+      homePage.clickOnMenuButton("Signup / Login");
       loginSignUpPage.login(email,addressInfo.get("password"));
       String user = loggedInHomePage.getLoggedInUserName();
       Assert.assertEquals(user, username);
@@ -82,6 +82,16 @@ public class UserRegistrationTest extends BaseTest {
       deleteAccountPage.continueButtonClick();
       homePage.verifyHomePage();
     }
+
+  @Test(description = "Register user with existing user ID", dataProvider = "userData", alwaysRun = true, priority =1,groups = {"RegisterUser"},dependsOnMethods = {"registerUser"})
+  public void registerUserWithExistingEmail(String username, String email) throws InterruptedException {
+    homePage.getPageTitle();
+    homePage.clickOnMenuButton("Signup / Login");
+    loginSignUpPage.fillFormForSignUp(username,email);
+    loginSignUpPage.clickOnSignUp();
+    String actual = loginSignUpPage.getErrorMessage(EXISTING_USER_SIGNUP_ERROR);
+    Assert.assertEquals(actual, EXISTING_USER_SIGNUP_ERROR,"Incorrect error message is displayed");
+  }
 
 //    private static class InputData{
 //        private final UserRegistration userRegistration;

@@ -2,7 +2,6 @@ package com.Pages;
 
 import com.InitializeElements;
 import com.utility.SeleniumWrappers;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -63,9 +62,8 @@ public class HomePage extends InitializeElements {
             return res;
     }
 
-    public void clickOnButtonFromHomePage(String homePageButtonName) throws InterruptedException {
+    public void clickOnMenuButton(String homePageButtonName) throws InterruptedException {
         wrappers.clickOnDynamicButton(homePageButtonName);
-
     }
 
 }
