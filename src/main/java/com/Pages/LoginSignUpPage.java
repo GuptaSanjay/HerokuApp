@@ -36,6 +36,9 @@ public class LoginSignUpPage extends InitializeElements {
   @FindBy(xpath = "//div[@class='login-form']/form/p")
   private WebElement invalidCredsError;
 
+  @FindBy(xpath = "//div[@class='signup-form']/form/p")
+  private WebElement emailExist;
+
 
     public void login(String username, String password) throws InterruptedException {
         fillLoginPage(username,password);
@@ -66,8 +69,13 @@ public class LoginSignUpPage extends InitializeElements {
         passworForLogin.sendKeys(password);
     }
 
-    public void verifyErrorMessage(){
-      wrappers.waitForElementVisibility(invalidCredsError);
+    public String getErrorMessage(String error){
+      if(error.equals("LOGIN_ERROR_MESSAGE")){
+        return wrappers.getText(invalidCredsError);
+      }
+      else {
+        return wrappers.getText(emailExist);
+      }
     }
 
 

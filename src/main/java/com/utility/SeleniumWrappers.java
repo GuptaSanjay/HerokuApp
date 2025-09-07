@@ -1,6 +1,6 @@
 package com.utility;
 
-import com.BaseTest;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SeleniumWrappers extends BaseTest {
+public class SeleniumWrappers {
 
     protected WebDriver driver;
     protected int shortWait = 15;
@@ -30,24 +30,12 @@ public class SeleniumWrappers extends BaseTest {
         Thread.sleep(Duration.ofSeconds(shortWait));
     }
 
-    public void mediumWait() throws InterruptedException {
-        Thread.sleep(Duration.ofSeconds(mediumWait));
-    }
-
-    protected void setShortWait() throws InterruptedException {
-        Thread.sleep(Duration.ofSeconds(this.shortWait));
-    }
-
     public String getTitle(){
         return driver.getTitle();
     }
 
     public void click(WebElement element){
         element.click();
-    }
-
-    public void enterString(WebElement element, String string){
-        element.sendKeys(string);
     }
 
     public String getText(WebElement element){
@@ -71,24 +59,16 @@ public class SeleniumWrappers extends BaseTest {
     public void waitForElementVisibility(WebElement element){
         webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(mediumWait)); // Updated to use Duration
         webDriverWait.until(ExpectedConditions.visibilityOf(element)); // Wait until element is visible
-        //element.sendKeys(string);
-    }
-
-    public void waitUntileElementIsClickable(WebElement element){
-        webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(shortWait));
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(element)); // Wait until element is clickable
-        element.click();
     }
 
     public  void waitShortToClickable(WebElement element){
         webDriverWait = new WebDriverWait(driver,Duration.ofSeconds(mediumWait));
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
     public void clickOnDynamicButton(String homePageButton){
         WebElement element = driver.findElement(By.xpath(".//a[text()=' "+homePageButton+"']"));
         clickWhenElementClickable(element);
-        element.click();
     }
 
     public void clickWhenElementClickable(WebElement element){
@@ -112,17 +92,16 @@ public class SeleniumWrappers extends BaseTest {
 
     public void acknowledgeAlert(){
         try{
-            Alert alert = driver.switchTo().alert();
-            alert.dismiss();
+            Alert alert = webDriverWait.until(ExpectedConditions.alertIsPresent());
+            alert.accept();
         }
         catch (Exception e){
             System.out.println("exception"+e);
         }
 
     }
-
-    public void clickESC(){
-
-    }
+  public String verifyErrorMessage(WebElement element){
+    return getText(element);
+  }
 
 }

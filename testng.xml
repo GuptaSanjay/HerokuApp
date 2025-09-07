@@ -7,17 +7,22 @@
   </listeners>
 
   <test name="HomePage">
-      <parameter name="browser" value="Chrome"/>
+      <parameter name="browser" value="Firefox"/>
         <classes>
-          <class name="com.test.UserRegistrationTest"/>
+<!--          <class name="com.test.UserRegistrationTest"/>-->
           <class name="com.test.LoginTest.LoginSignUpTest"/>
         </classes>
     </test>
 
 <!--  <test name="HomePage1">-->
-<!--    <parameter name="browser" value="Chrome"/>-->
+<!--    <parameter name="browser" value="Firefox"/>-->
+<!--    <packages>-->
+<!--      <package name="com.test.LoginTest"/>-->
+<!--      <package name="com.test.ContactUs"/>-->
+<!--      <package name="com.test.ProductsTest"/>-->
+<!--    </packages>-->
 <!--    <classes>-->
-<!--      <class name="com.test.LoginTest.LoginSignUpTest"></class>-->
+<!--      <class name="com.test.UserRegistrationTest"/>-->
 <!--    </classes>-->
 <!--  </test>-->
 </suite>

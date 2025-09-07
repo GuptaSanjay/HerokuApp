@@ -1,6 +1,6 @@
 package com.test.LoginTest;
 
-import com.BaseTest;
+import com.test.BaseTest;
 import com.Pages.HomePage;
 import com.Pages.LoggedInHomePage;
 import com.Pages.LoginSignUpPage;
@@ -14,10 +14,11 @@ public class LoginSignUpTest extends BaseTest {
     private LoginSignUpPage loginSignUpPage;
     private HomePage homePage;
     private LoggedInHomePage loggedInHomePage;
+    private final String LOGIN_ERROR_MESSAGE= "Your email or password is incorrect!";
 
 
     @BeforeMethod
-    public void driverSetup(){
+    public void initializeObject(){
         loginSignUpPage = new LoginSignUpPage(driver);
         homePage = new HomePage(driver);
         loggedInHomePage = new LoggedInHomePage(driver);
@@ -26,7 +27,7 @@ public class LoginSignUpTest extends BaseTest {
 
     @Test(dataProvider = "validLoginData")
     public void loginWithValidUser(String username,String password) throws InterruptedException{
-      homePage.clickOnButtonFromHomePage("Signup / Login");
+      homePage.clickOnMenuButton("Signup / Login");
       loginSignUpPage.login(username,password);
       String user = loggedInHomePage.getLoggedInUserName();
       Assert.assertEquals(user, "sanjay");
@@ -35,9 +36,10 @@ public class LoginSignUpTest extends BaseTest {
 
   @Test(dataProvider = "invalidLoginData")
   public void loginWithInvalidUser(String username,String password) throws InterruptedException{
-    homePage.clickOnButtonFromHomePage("Signup / Login");
+    homePage.clickOnMenuButton("Signup / Login");
     loginSignUpPage.login(username,password);
-    loginSignUpPage.verifyErrorMessage();
+    String actual = loginSignUpPage.getErrorMessage("LOGIN_ERROR_MESSAGE");
+    Assert.assertEquals(actual,LOGIN_ERROR_MESSAGE,"Incorrect error message is displayed");
   }
 
   @DataProvider(name = "validLoginData")
