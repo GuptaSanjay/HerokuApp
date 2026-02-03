@@ -13,7 +13,7 @@ import java.util.Properties;
 
 
 public class BaseTest {
-    protected WebDriver driver;
+    public WebDriver driver;
     private final String USER_DIR = System.getProperty("user.dir");
     private final String SEPARATOR = FileSystems.getDefault().getSeparator();
     private final String globalDataPath = USER_DIR+SEPARATOR+"src"+SEPARATOR+"main"+SEPARATOR+"resources"+SEPARATOR+"GlobalData.properties";
