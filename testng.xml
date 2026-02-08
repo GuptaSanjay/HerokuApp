@@ -3,14 +3,17 @@
 <suite name="SeleniumTestsuite" parallel="classes" thread-count="2" verbose="3">
 
   <listeners>
-    <listener class-name="com.test.Listener"/>
+    <listener class-name="com.test.Listeners.Listeners"/>
   </listeners>
 
   <test name="HomePage">
-      <parameter name="browser" value="Firefox"/>
+      <parameter name="browser" value="Chrome"/>
         <classes>
-<!--          <class name="com.test.UserRegistrationTest"/>-->
+          <class name="com.test.UserRegistrationTest"/>
           <class name="com.test.LoginTest.LoginSignUpTest"/>
+<!--          <class name="com.test.ProductsTest.TestProductList"/>-->
+<!--          <class name="com.test.ContactUs.ContactUsTest"/>-->
+
         </classes>
     </test>
 

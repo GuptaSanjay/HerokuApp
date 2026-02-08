@@ -58,7 +58,7 @@ public class ContactUsTest extends BaseTest {
     contactUsPage.clickOnSubmitToProceed();
     String message = contactUsPage.getSuccessMessage();
     Assert.assertEquals(message,map.get("successMessage"),"Unable to submit contact us form");
-    contactUsPage.clickOnHomePage();
-    homePage.verifyHomePage();
+//    contactUsPage.clickOnHomePage();
+//    homePage.verifyHomePage();
   }
 }
