@@ -18,7 +18,10 @@ public class Listeners implements ITestListener {
     ExtentTest test;
     ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
     public void onTestStart(ITestResult result) {
-        test = extent.createTest(result.getMethod().getMethodName());
+        String testDescription = (result.getMethod().getDescription() !=null && !result.getMethod().getDescription().isEmpty()) ?
+                result.getMethod().getDescription():
+                result.getMethod().getMethodName();
+        test = extent.createTest(testDescription);
         extentTest.set(test);
     }
 
