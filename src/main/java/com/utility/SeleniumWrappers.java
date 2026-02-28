@@ -1,6 +1,8 @@
 package com.utility;
 
 
+import com.utility.Report.LoggerUtil;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -16,9 +18,11 @@ public class SeleniumWrappers {
     protected int shortWait = 15;
     protected int mediumWait = 25;
     protected WebDriverWait webDriverWait;
+    private static final Logger logger = LoggerUtil.getLogger(SeleniumWrappers.class);
 
     public SeleniumWrappers(WebDriver driver){
         this.driver =driver;
+        logger.info("SeleniumWrappers initialized with driver: {}", driver);
     }
 
     private void waitForPageTOLoad(){
@@ -27,14 +31,18 @@ public class SeleniumWrappers {
     }
 
      public void shortWait() throws IllegalArgumentException, InterruptedException {
+        logger.debug("Waiting for {} seconds", shortWait);
         Thread.sleep(Duration.ofSeconds(shortWait));
     }
 
     public String getTitle(){
-        return driver.getTitle();
+        String title = driver.getTitle();
+        logger.info("Page title fetched: {}", title);
+        return title;
     }
 
     public void click(WebElement element){
+        logger.info("Clicking on element: {}", element);
         element.click();
     }
 
@@ -104,4 +112,47 @@ public class SeleniumWrappers {
     return getText(element);
   }
 
+    public void handleAdvertisement() {
+        try {
+            // 1. Try to close ad overlays in main DOM
+            List<By> adSelectors = List.of(
+                By.xpath("//*[contains(@aria-label,'Close') or contains(@class,'close') or contains(text(),'×') or contains(text(),'Close') or @id='dismiss-button']"),
+                By.cssSelector(".close, .close-button, .ad-close, [aria-label='close'], [aria-label='dismiss']")
+            );
+            for (By selector : adSelectors) {
+                List<WebElement> closeButtons = driver.findElements(selector);
+                for (WebElement btn : closeButtons) {
+                    if (btn.isDisplayed() && btn.isEnabled()) {
+                        btn.click();
+                        logger.info("Closed advertisement overlay in main DOM.");
+                        Thread.sleep(500);
+                    }
+                }
+            }
+            // 2. Try to close ad overlays inside iframes
+            List<WebElement> adFrames = driver.findElements(By.xpath("//iframe[contains(@id,'aswift') or contains(@title,'Advertisement') or contains(@name,'google_ads_iframe') or contains(@src,'doubleclick')]"));
+            for (WebElement adFrame : adFrames) {
+                try {
+                    driver.switchTo().frame(adFrame);
+                    for (By selector : adSelectors) {
+                        List<WebElement> closeButtons = driver.findElements(selector);
+                        for (WebElement btn : closeButtons) {
+                            if (btn.isDisplayed() && btn.isEnabled()) {
+                                btn.click();
+                                logger.info("Closed advertisement overlay inside iframe.");
+                                Thread.sleep(500);
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    logger.warn("Error handling ad in iframe: {}", e.getMessage());
+                } finally {
+                    driver.switchTo().defaultContent();
+                }
+            }
+        } catch (Exception e) {
+            logger.warn("No advertisement overlay handled or error occurred: {}", e.getMessage());
+            driver.switchTo().defaultContent();
+        }
+    }
 }

@@ -1,21 +1,22 @@
 package com.engine;
 
+import lombok.Setter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.chromium.ChromiumOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.Map;
 
-public class DriverManger {
+public class DriverManager {
 
-    private static volatile DriverManger driverMangerInstance;
+    private static volatile DriverManager driverMangerInstance;
     private static final ThreadLocal<WebDriver> threadLocal = new ThreadLocal<>();
+    @Setter
+    private static String browser;
 
-
-    private DriverManger(){
+    private DriverManager(){
     }
 
     private void initEngine(String browser){
@@ -40,11 +41,11 @@ public class DriverManger {
         }
     }
 
-    public static DriverManger getInstance(String browser){
+    public static DriverManager getInstance(){
         if(driverMangerInstance==null){
-            synchronized (DriverManger.class){
+            synchronized (DriverManager.class){
                 if(driverMangerInstance == null){
-                    driverMangerInstance = new DriverManger();
+                    driverMangerInstance = new DriverManager();
                 }
             }
         }
