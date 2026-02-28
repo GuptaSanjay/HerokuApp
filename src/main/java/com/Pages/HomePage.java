@@ -2,6 +2,8 @@ package com.Pages;
 
 import com.InitializeElements;
 import com.utility.SeleniumWrappers;
+import com.utility.Report.LoggerUtil;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,10 +15,12 @@ public class HomePage extends InitializeElements {
 
     protected SeleniumWrappers wrappers;
     protected WebDriver driver;
+    private static final Logger logger = LoggerUtil.getLogger(HomePage.class);
 
     public HomePage(WebDriver driver) {
         super(driver);
         this.wrappers = new SeleniumWrappers(driver);
+        logger.info("HomePage initialized with driver: {}", driver);
     }
 
     @FindBy(xpath = ".//div[@class=\"shop-menu pull-right\"]//ul//li")
@@ -31,13 +35,20 @@ public class HomePage extends InitializeElements {
     @FindBy(xpath = ".//a[text()=' Home']")
     private WebElement homePageButton;
 
+    @FindBy(xpath = "//a[text()=' Products']")
+    private WebElement productsMenuButton;
+
 
     public String verifyPageHeading(){
-        return wrappers.getAttributeValue(headerText,"alt");
+        String heading = wrappers.getAttributeValue(headerText,"alt");
+        logger.info("Verifying page heading: {}", heading);
+        return heading;
     }
 
     public String getPageTitle(){
-       return wrappers.getTitle();
+       String title = wrappers.getTitle();
+       logger.info("Getting page title: {}", title);
+       return title;
     }
 
     public List<String> getHeaderOption(){
@@ -64,6 +75,12 @@ public class HomePage extends InitializeElements {
 
     public void clickOnMenuButton(String homePageButtonName) throws InterruptedException {
         wrappers.clickOnDynamicButton(homePageButtonName);
+        wrappers.handleAdvertisement();
     }
 
+    public void goToProductsPage() throws InterruptedException {
+        wrappers.click(productsMenuButton);
+        wrappers.handleAdvertisement();
+        Thread.sleep(500);
+    }
 }

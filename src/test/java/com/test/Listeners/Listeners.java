@@ -4,7 +4,9 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.utility.Report.ExtentReportManager;
+import com.utility.Report.LoggerUtil;
 import com.utility.Report.ScreenshotUtil;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -17,25 +19,30 @@ public class Listeners implements ITestListener {
     ExtentReports extent = ExtentReportManager.getExtentObject();
     ExtentTest test;
     ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
+    private static final Logger logger = LoggerUtil.getLogger(Listeners.class);
     public void onTestStart(ITestResult result) {
         String testDescription = (result.getMethod().getDescription() !=null && !result.getMethod().getDescription().isEmpty()) ?
                 result.getMethod().getDescription():
                 result.getMethod().getMethodName();
         test = extent.createTest(testDescription);
         extentTest.set(test);
+        logger.info("Test started: {}", testDescription);
     }
 
     public void onTestSuccess(ITestResult result) {
         extentTest.get().log(Status.PASS, "Test Passed");
+        logger.info("Test passed: {}", result.getMethod().getMethodName());
         WebDriver driver = null;
         try {
             driver = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
         } catch (Exception e) {
+            logger.error("Error getting WebDriver for screenshot: {}", e.getMessage());
             e.printStackTrace();
         }
         try {
             extentTest.get().addScreenCaptureFromBase64String(ScreenshotUtil.takeScreenshot(driver),result.getMethod().getMethodName());
         } catch (IOException e) {
+            logger.error("Error capturing screenshot: {}", e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -60,6 +67,11 @@ public class Listeners implements ITestListener {
     }
 
     public void onTestSkipped(ITestResult result) {
+        extentTest.get().log(Status.SKIP, "Test Skipped: " + result.getMethod().getMethodName());
+        if (result.getThrowable() != null) {
+            extentTest.get().skip(result.getThrowable());
+        }
+        logger.info("Test skipped: {} Reason: {}", result.getMethod().getMethodName(), result.getThrowable());
     }
 
 //    public void onStart(ITestContext context) {
