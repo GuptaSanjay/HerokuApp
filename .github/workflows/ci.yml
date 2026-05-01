@@ -26,8 +26,8 @@ jobs:
       if: always() # Upload even if tests fail
       uses: actions/upload-artifact@v4
       with:
-        name: testng-reports
-        path: target/surefire-reports/
+        name: testng-reports CI
+        path: src/test/Artifacts
 
         # Step 5: Upload Screenshots (if your framework saves them)
     - name: Upload Screenshots
@@ -35,6 +35,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: selenium-screenshots
-        path: target/screenshots/
+        path: src/test/Artifacts/screenshots
         if-no-files-found: ignore
 
