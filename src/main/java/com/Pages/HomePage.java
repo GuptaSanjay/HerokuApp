@@ -38,11 +38,25 @@ public class HomePage extends InitializeElements {
     @FindBy(xpath = "//a[text()=' Products']")
     private WebElement productsMenuButton;
 
+    @FindBy(xpath = ".//*[@id=\"footer\"]/descendant::h2")
+    private WebElement footerTextSubscription;
+
+    @FindBy(xpath = ".//a[@id=\"scrollUp\"]")
+    private WebElement scrollUpButton;
+
+    @FindBy(xpath = "//*[text()='Full-Fledged practice website for Automation Engineers']")
+    private WebElement fullFledgedPracticeText;
+
 
     public String verifyPageHeading(){
         String heading = wrappers.getAttributeValue(headerText,"alt");
         logger.info("Verifying page heading: {}", heading);
         return heading;
+    }
+    public String homePageText(){
+        String text = wrappers.getText(fullFledgedPracticeText);
+        logger.info("Getting home page text: {}", text);
+        return text;
     }
 
     public String getPageTitle(){
@@ -82,5 +96,20 @@ public class HomePage extends InitializeElements {
         wrappers.click(productsMenuButton);
         wrappers.handleAdvertisement();
         Thread.sleep(500);
+    }
+
+    public void scrollToBottom() throws InterruptedException {
+        wrappers.scrollToBottom();
+    }
+
+    public String verifyFooterSubscriptionText(){
+        return wrappers.getText(footerTextSubscription);
+    }
+    public void clickOnScrollUpButton()  {
+        wrappers.click(scrollUpButton);
+    }
+
+    public void scrollUpWithoutArrowButton() {
+        wrappers.scrollToTop();
     }
 }

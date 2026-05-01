@@ -4,6 +4,7 @@ package com.utility;
 import com.utility.Report.LoggerUtil;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -154,5 +155,20 @@ public class SeleniumWrappers {
             logger.warn("No advertisement overlay handled or error occurred: {}", e.getMessage());
             driver.switchTo().defaultContent();
         }
+    }
+
+    public void scrollToFixedPoint(int scrollBy){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,"+scrollBy+");");
+    }
+
+    public void scrollToBottom(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+    }
+
+     public void scrollToTop(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, 0);");
     }
 }

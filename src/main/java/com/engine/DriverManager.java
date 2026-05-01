@@ -25,6 +25,15 @@ public class DriverManager {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--disable-gpu");
                 options.addArguments("--disable-software-rasterizer");
+
+                // Enable headless mode when running on CI/remote machine
+                String ciEnv = System.getenv("CI");
+                if (ciEnv != null && ciEnv.equalsIgnoreCase("true")) {
+                    options.addArguments("--headless=new");
+                    options.addArguments("--no-sandbox");
+                    options.addArguments("--disable-dev-shm-usage");
+                }
+
                 options.setExperimentalOption("prefs", Map.of(
                         "credentials_enable_service", false,
                         "profile.password_manager_enabled", false

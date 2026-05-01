@@ -1,0 +1,81 @@
+2026-02-28 15:20:34 INFO  BaseTest:28 - Loaded global data from: C:\Users\gupta\IdeaProjects\HerokuApp\src\main\resources\GlobalData.properties
+2026-02-28 15:20:34 INFO  BaseTest:28 - Loaded global data from: C:\Users\gupta\IdeaProjects\HerokuApp\src\main\resources\GlobalData.properties
+2026-02-28 15:20:34 INFO  BaseTest:28 - Loaded global data from: C:\Users\gupta\IdeaProjects\HerokuApp\src\main\resources\GlobalData.properties
+2026-02-28 15:20:34 INFO  BaseTest:28 - Loaded global data from: C:\Users\gupta\IdeaProjects\HerokuApp\src\main\resources\GlobalData.properties
+2026-02-28 15:20:34 INFO  BaseTest:28 - Loaded global data from: C:\Users\gupta\IdeaProjects\HerokuApp\src\main\resources\GlobalData.properties
+2026-02-28 15:20:34 INFO  BaseTest:44 - Using browser from test parameter: Chrome
+2026-02-28 15:20:34 INFO  BaseTest:44 - Using browser from test parameter: Chrome
+2026-02-28 15:20:47 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (e2079eca06c2017be1f72b6f24edc0b3)
+2026-02-28 15:20:47 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (e2079eca06c2017be1f72b6f24edc0b3)
+2026-02-28 15:20:47 INFO  HomePage:23 - HomePage initialized with driver: ChromeDriver: chrome on windows (e2079eca06c2017be1f72b6f24edc0b3)
+2026-02-28 15:20:47 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (e2079eca06c2017be1f72b6f24edc0b3)
+2026-02-28 15:20:47 INFO  Listeners:29 - Test started: loginWithInvalidUser
+2026-02-28 15:20:51 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (e2079eca06c2017be1f72b6f24edc0b3)
+2026-02-28 15:20:51 INFO  Listeners:34 - Test passed: loginWithInvalidUser
+2026-02-28 15:20:51 INFO  BaseTest:44 - Using browser from test parameter: Chrome
+2026-02-28 15:21:02 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (2819ddc3a55fe2713c96fcfbd05c975a)
+2026-02-28 15:21:02 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (2819ddc3a55fe2713c96fcfbd05c975a)
+2026-02-28 15:21:02 INFO  HomePage:23 - HomePage initialized with driver: ChromeDriver: chrome on windows (2819ddc3a55fe2713c96fcfbd05c975a)
+2026-02-28 15:21:02 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (2819ddc3a55fe2713c96fcfbd05c975a)
+2026-02-28 15:21:02 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (2819ddc3a55fe2713c96fcfbd05c975a)
+2026-02-28 15:21:02 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (2819ddc3a55fe2713c96fcfbd05c975a)
+2026-02-28 15:21:02 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (2819ddc3a55fe2713c96fcfbd05c975a)
+2026-02-28 15:21:02 INFO  Listeners:29 - Test started: Verify user can sign up and can  delete account
+2026-02-28 15:21:02 INFO  SeleniumWrappers:40 - Page title fetched: Automation Exercise
+2026-02-28 15:21:02 INFO  HomePage:47 - Getting page title: Automation Exercise
+2026-02-28 15:21:08 INFO  BaseTest:44 - Using browser from test parameter: Chrome
+2026-02-28 15:21:22 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (ee859d4bbc3793cc18ec4039a7503960)
+2026-02-28 15:21:22 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (ee859d4bbc3793cc18ec4039a7503960)
+2026-02-28 15:21:22 INFO  HomePage:23 - HomePage initialized with driver: ChromeDriver: chrome on windows (ee859d4bbc3793cc18ec4039a7503960)
+2026-02-28 15:21:22 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (ee859d4bbc3793cc18ec4039a7503960)
+2026-02-28 15:21:22 INFO  Listeners:29 - Test started: loginWithInvalidUser
+2026-02-28 15:21:27 INFO  BaseTest:44 - Using browser from test parameter: Chrome
+2026-02-28 15:21:29 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (4df92c2c1364513e1340b0d178ec22d2)
+2026-02-28 15:21:29 INFO  HomePage:23 - HomePage initialized with driver: ChromeDriver: chrome on windows (4df92c2c1364513e1340b0d178ec22d2)
+2026-02-28 15:21:29 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (4df92c2c1364513e1340b0d178ec22d2)
+2026-02-28 15:21:29 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (4df92c2c1364513e1340b0d178ec22d2)
+2026-02-28 15:21:29 INFO  Listeners:29 - Test started: Checks number of available product and click on product to check product details
+2026-02-28 15:21:29 INFO  SeleniumWrappers:40 - Page title fetched: Automation Exercise
+2026-02-28 15:21:29 INFO  HomePage:47 - Getting page title: Automation Exercise
+2026-02-28 15:21:30 INFO  BaseTest:44 - Using browser from test parameter: Chrome
+2026-02-28 15:21:57 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (5ae62ed4b5c26712bc1dbb5d5fc2307e)
+2026-02-28 15:21:57 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (5ae62ed4b5c26712bc1dbb5d5fc2307e)
+2026-02-28 15:21:57 INFO  HomePage:23 - HomePage initialized with driver: ChromeDriver: chrome on windows (5ae62ed4b5c26712bc1dbb5d5fc2307e)
+2026-02-28 15:21:57 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (5ae62ed4b5c26712bc1dbb5d5fc2307e)
+2026-02-28 15:21:57 INFO  Listeners:29 - Test started: loginWithValidUser
+2026-02-28 15:21:59 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (5ea0c5108387ec1200f44aa7afcefa78)
+2026-02-28 15:21:59 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (5ea0c5108387ec1200f44aa7afcefa78)
+2026-02-28 15:21:59 INFO  HomePage:23 - HomePage initialized with driver: ChromeDriver: chrome on windows (5ea0c5108387ec1200f44aa7afcefa78)
+2026-02-28 15:21:59 INFO  Listeners:29 - Test started: Verify user is able to submit contact us form
+2026-02-28 15:21:59 INFO  SeleniumWrappers:40 - Page title fetched: Automation Exercise
+2026-02-28 15:21:59 INFO  HomePage:47 - Getting page title: Automation Exercise
+2026-02-28 15:22:02 INFO  BaseTest:44 - Using browser from test parameter: Chrome
+2026-02-28 15:22:03 INFO  Listeners:34 - Test passed: verifyContactUsPage
+2026-02-28 15:22:03 INFO  BaseTest:44 - Using browser from test parameter: Chrome
+2026-02-28 15:23:26 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (c5f5048cd3d5d66137d878f7cc970e43)
+2026-02-28 15:23:26 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (c5f5048cd3d5d66137d878f7cc970e43)
+2026-02-28 15:23:26 INFO  HomePage:23 - HomePage initialized with driver: ChromeDriver: chrome on windows (c5f5048cd3d5d66137d878f7cc970e43)
+2026-02-28 15:23:26 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (c5f5048cd3d5d66137d878f7cc970e43)
+2026-02-28 15:23:26 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (c5f5048cd3d5d66137d878f7cc970e43)
+2026-02-28 15:23:26 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (c5f5048cd3d5d66137d878f7cc970e43)
+2026-02-28 15:23:26 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (c5f5048cd3d5d66137d878f7cc970e43)
+2026-02-28 15:23:26 INFO  Listeners:29 - Test started: Register user with existing user ID
+2026-02-28 15:23:26 INFO  SeleniumWrappers:40 - Page title fetched: Automation Exercise
+2026-02-28 15:23:26 INFO  HomePage:47 - Getting page title: Automation Exercise
+2026-02-28 15:23:26 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (efd6abeeefc803d7e64d0b6a642cca94)
+2026-02-28 15:23:26 INFO  HomePage:23 - HomePage initialized with driver: ChromeDriver: chrome on windows (efd6abeeefc803d7e64d0b6a642cca94)
+2026-02-28 15:23:26 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (efd6abeeefc803d7e64d0b6a642cca94)
+2026-02-28 15:23:26 INFO  Listeners:29 - Test started: Verify all the products related to search are displayed
+2026-02-28 15:23:29 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (c5f5048cd3d5d66137d878f7cc970e43)
+2026-02-28 15:23:55 INFO  BaseTest:44 - Using browser from test parameter: Chrome
+2026-02-28 15:24:47 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (dd46a3e86d635539f684cbf557484b98)
+2026-02-28 15:24:47 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (dd46a3e86d635539f684cbf557484b98)
+2026-02-28 15:24:47 INFO  HomePage:23 - HomePage initialized with driver: ChromeDriver: chrome on windows (dd46a3e86d635539f684cbf557484b98)
+2026-02-28 15:24:47 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (dd46a3e86d635539f684cbf557484b98)
+2026-02-28 15:24:47 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (dd46a3e86d635539f684cbf557484b98)
+2026-02-28 15:24:47 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (dd46a3e86d635539f684cbf557484b98)
+2026-02-28 15:24:47 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (dd46a3e86d635539f684cbf557484b98)
+2026-02-28 15:24:47 INFO  Listeners:29 - Test started: Delete registered user
+2026-02-28 15:24:47 INFO  SeleniumWrappers:40 - Page title fetched: Automation Exercise
+2026-02-28 15:24:47 INFO  HomePage:47 - Getting page title: Automation Exercise
+2026-02-28 15:24:51 INFO  SeleniumWrappers:25 - SeleniumWrappers initialized with driver: ChromeDriver: chrome on windows (dd46a3e86d635539f684cbf557484b98)
