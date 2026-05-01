@@ -6,18 +6,26 @@
     <listener class-name="com.test.Listeners.Listeners"/>
   </listeners>
 
+<!--  <test name="HomePage">-->
+<!--      <parameter name="browser" value="Chrome"/>-->
+<!--      <parameter name="searchKeyWord" value="Blue"/>-->
+<!--        <classes>-->
+<!--          <class name="com.test.UserRegistrationTest"/>-->
+<!--          <class name="com.test.LoginTest.LoginSignUpTest"/>-->
+<!--          <class name="com.test.ProductsTest.TestProductList"/>-->
+<!--          <class name="com.test.ContactUs.ContactUsTest"/>-->
+<!--          <class name="com.test.ProductsTest.VerifyProductSearchTest"/>-->
+<!--          <class name="com.test.ProductsTest.AddProductReviewTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
   <test name="HomePage">
-      <parameter name="browser" value="Chrome"/>
-      <parameter name="searchKeyWord" value="Blue"/>
-        <classes>
-          <class name="com.test.UserRegistrationTest"/>
-          <class name="com.test.LoginTest.LoginSignUpTest"/>
-          <class name="com.test.ProductsTest.TestProductList"/>
-          <class name="com.test.ContactUs.ContactUsTest"/>
-          <class name="com.test.ProductsTest.VerifyProductSearchTest"/>
-          <class name="com.test.ProductsTest.AddProductReviewTest"/>
-        </classes>
-    </test>
+    <parameter name="browser" value="Chrome"/>
+    <parameter name="searchKeyWord" value="Blue"/>
+    <packages>
+      <package name="com.test.*"/>
+    </packages>
+  </test>
 
 <!--  <test name="HomePage1">-->
 <!--    <parameter name="browser" value="Firefox"/>-->
