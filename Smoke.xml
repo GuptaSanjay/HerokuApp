@@ -11,7 +11,7 @@
         <classes>
 <!--          <class name="com.test.UserRegistrationTest"/>-->
           <class name="com.test.LoginTest.LoginSignUpTest"/>
-          <class name="com.test.ProductsTest.TestProductList"/>
+<!--          <class name="com.test.ProductsTest.TestProductList"/>-->
 <!--          <class name="com.test.ContactUs.ContactUsTest"/>-->
 
         </classes>

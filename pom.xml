@@ -63,7 +63,8 @@
         <version>3.2.5</version> <!-- Use a recent version -->
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>testng.xml</suiteXmlFile>
+            <!--suppress UnresolvedMavenProperty -->
+              <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
           </suiteXmlFiles>
           <systemPropertyVariables>
 <!--            <browser>Chrome</browser> &lt;!&ndash; Optional: Set default browser &ndash;&gt;-->
